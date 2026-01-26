@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, Switch, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Switch, TouchableOpacity, ScrollView,Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
+import logo from '../assets/logonews.png';
 
 export function ProfileScreen() {
+    const navigation = useNavigation();
     const { colors, isDarkMode, toggleTheme } = useTheme();
     const insets = useSafeAreaInsets();
 
@@ -45,13 +48,17 @@ export function ProfileScreen() {
 
             <ScrollView showsVerticalScrollIndicator={false}>
                 {/* User Info Section */}
-                <View style={[styles.profileSection, { backgroundColor: colors.card }]}>
-                    <View style={[styles.avatar, { backgroundColor: colors.primary }]}>
-                        <Icon name="user" size={40} color="#FFFFFF" />
+                <View style={styles.profileSection}>
+                
+                    <View style={[styles.avatar,]}>
+                        <Image
+                        source={logo}
+                        style={styles.logo}
+                        resizeMode="contain"/>
                     </View>
-                    <Text style={[styles.userName, { color: colors.text }]}>Pengguna</Text>
+                    <Text style={[styles.userName, { color: colors.text }]}>Selamat datang </Text>
                     <Text style={[styles.userEmail, { color: colors.textSecondary }]}>
-                        pengguna@email.com
+                        Di aplikasi Kabar rakyat
                     </Text>
                 </View>
 
@@ -73,24 +80,10 @@ export function ProfileScreen() {
                                 />
                             }
                         />
-                        <SettingItem icon="bell" title="Notifikasi" />
-                        <SettingItem icon="globe" title="Bahasa" />
+                        <SettingItem icon="users" title="Anggota" onPress={() => navigation.navigate('Members')} />
+                        <SettingItem icon="info" title="Tentang Aplikasi" onPress={() => navigation.navigate('About')}/>
                     </View>
                 </View>
-
-                {/* About Section */}
-                <View style={styles.section}>
-                    <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>
-                        TENTANG
-                    </Text>
-                    <View style={[styles.settingsCard, { backgroundColor: colors.card }]}>
-                        <SettingItem icon="info" title="Tentang Aplikasi" />
-                        <SettingItem icon="file-text" title="Kebijakan Privasi" />
-                        <SettingItem icon="help-circle" title="Bantuan" />
-                    </View>
-                </View>
-
-                {/* Version */}
                 <Text style={[styles.versionText, { color: colors.textSecondary }]}>
                     Berita Terkini v1.0.0
                 </Text>
@@ -170,4 +163,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 20,
     },
+    logo: {
+    width: 280,
+    height: 120,
+    marginBottom: 16,
+},
 });

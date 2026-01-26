@@ -7,6 +7,8 @@ import { useTheme } from '../context/ThemeContext';
 import { HomeScreen } from '../screens/HomeScreen';
 import { DetailScreen } from '../screens/DetailScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
+import { AboutScreen } from '../screens/AboutScreen';
+import { MembersScreen } from '../screens/MembersScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -90,6 +92,16 @@ export function AppNavigator() {
                         animation: 'slide_from_right',
                     }}
                 />
+                 <Stack.Screen
+                    name="About"
+                    component={AboutScreen}
+                    options={{ animation: 'slide_from_right' }}
+                />
+                <Stack.Screen
+                 name="Members"
+                 component={MembersScreen}
+                options={{ animation: 'slide_from_right' }}
+    />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -1,6 +1,4 @@
-/**
- * Berita Terkini - React Native News App
- */
+
 
 import React from 'react';
 import { StatusBar } from 'react-native';
